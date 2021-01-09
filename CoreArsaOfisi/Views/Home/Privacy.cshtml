@@ -1,7 +1,18 @@
-﻿@using Microsoft.AspNetCore.Http
-@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿@using CoreArsaOfisi.DataLayer.Models.db;
+@model Advertiser
 
-<p>@Context.Session.GetString("kullanici_adi")</p>
+
+{
+    <table>
+        <thead>
+            <tr>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.OfficalName</td>
+            </tr>
+        </tbody>
+    </table>
+}

@@ -21,4 +21,9 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoreArsaOfisi.BusinessLayer\CoreArsaOfisi.BusinessLayer.csproj" />
+    <ProjectReference Include="..\CoreArsaOfisi.DataLayer\CoreArsaOfisi.DataLayer.csproj" />
+  </ItemGroup>
+
 </Project>

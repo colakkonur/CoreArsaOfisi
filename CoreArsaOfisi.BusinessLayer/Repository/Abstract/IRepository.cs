@@ -9,7 +9,7 @@ namespace CoreArsaOfisi.BusinessLayer.Repository.Abstract
 {
 
     //Base Interfacemiz bu generic olarak istediğimiz methodu tanımlayabiliriz.
-    interface IRepository<T> where T:class
+    public interface Repository<T> where T:class
     {
         ValueTask<T> GetByIdAsync(int Id);
         Task<IEnumerable<T>> GetAllAsync();

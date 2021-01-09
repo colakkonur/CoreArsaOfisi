@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CoreArsaOfisi.BusinessLayer.Repository.Abstract
 {
-    public interface IAdvertisementRepository:Repository<Advertisement>
+    public interface IAdvertiserRepository:Repository<Advertiser>
     {
-        Task<IEnumerable<Advertisement>> GetAllWithAdvertiserByAdvertiserIdAsync(int Id);
+        Task<Advertiser> GetAllWithAdvertisementAsync();
     }
 }

@@ -1,4 +1,5 @@
-﻿using CoreArsaOfisi.Models;
+﻿using CoreArsaOfisi.BusinessLayer.Repository.Concrete;
+using CoreArsaOfisi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,10 +30,11 @@ namespace CoreArsaOfisi.Controllers
             return View();
         }
 
-        //[Route("Deneme")]
+        [Route("Deneme")]
         public IActionResult Privacy()
         {
-            return View();
+            UnitOfWork unitOfWork = new UnitOfWork(new DataLayer.Models.db.u9673886_arsdbContext());
+            return View(unitOfWork.AdvertiserRepository.GetAllAsync());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

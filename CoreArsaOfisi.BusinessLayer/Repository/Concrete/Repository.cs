@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CoreArsaOfisi.BusinessLayer.Repository.Concrete
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : Abstract.Repository<T> where T : class
     {
         protected readonly DbContext Context;
         private readonly DbSet<T> _DBSet;
@@ -36,7 +36,8 @@ namespace CoreArsaOfisi.BusinessLayer.Repository.Concrete
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await Context.Set<T>().ToListAsync();
+            var model = await Context.Set<T>().ToListAsync();
+            return model;
         }
 
         public ValueTask<T> GetByIdAsync(int Id)
@@ -51,7 +52,7 @@ namespace CoreArsaOfisi.BusinessLayer.Repository.Concrete
 
         public async void Remove(int Id)
         {
-            throw new NotImplementedException();
+            Context.Set<T>().Remove(await GetByIdAsync(Id));
         }
 
         public void RemoveRange(IEnumerable<T> entites)
