@@ -1,0 +1,18 @@
+﻿<div class="dashboard_sidebar_menu dn-992">
+    <ul class="sidebar-menu">
+        <li class="header"><img src="~/images/header-logo2.png" alt="header-logo2.png">Arsa Ofisi</li>
+
+        <li class="title"><span>Giriş</span></li>
+        <li class="treeview"><a href="@Url.Action("Dashboard","User")"><i class="flaticon-layers"></i><span> Anamenü</span></a></li>
+        <li class="treeview"><a href="@Url.Action("MyMessages","User")"><i class="flaticon-envelope"></i><span> Mesajlar</span></a></li>
+
+        <li class="title"><span>İlanlar</span></li>
+        <li><a href="@Url.Action("MyAds","User")"><i class="flaticon-home"></i> <span> İlanlarım</span></a></li>
+        <li><a href="@Url.Action("MyFavorites","User")"><i class="flaticon-heart"></i> <span> Favorilerim</span></a></li>
+
+
+        <li class="title"><span>Hesap Bilgileri</span></li>
+        <li><a href="@Url.Action("MyProfile","User")"><i class="flaticon-user"></i> <span>Profilim</span></a></li>
+        <li><a href="@Url.Action("LogOut","Security")"><i class="flaticon-logout"></i> <span>Çıkış Yap</span></a></li>
+    </ul>
+</div>

@@ -42,6 +42,7 @@ namespace CoreArsaOfisi.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim("kullanici_id",vHangiKullanici.Id.ToString()),
+                    new Claim("kullanici_adi",vHangiKullanici.OfficalName),
                     new Claim("kullanici_mail",vHangiKullanici.Mail),
                     new Claim("kullanici_avatar",vHangiKullanici.Avatar),
                 };

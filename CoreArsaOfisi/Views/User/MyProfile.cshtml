@@ -1,0 +1,242 @@
+﻿@model CoreArsaOfisi.Models.db.Advertiser
+@{
+    ViewData["Title"] = "MyProfile";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-lg-12 mb10">
+    <div class="breadcrumb_content style2">
+        <h2 class="breadcrumb_title">Profilim</h2>
+        <p>Seni Aramızda görmek güzel!</p>
+    </div>
+</div>
+<div class="col-lg-12">
+    @if (TempData["approval"] != null)
+    {
+        <div class="alert alart_style_three alert-dismissible fade show" role="alert">
+            @TempData["approval"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+    }
+    else if (TempData["rejection"] != null)
+    {
+        <div class="alert alart_style_four alert-dismissible fade show" role="alert">
+            @TempData["rejection"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+    }
+
+    <div class="my_dashboard_review">
+        <div class="row">
+            <div class="col-xl-2">
+                <h4>Profil Bilgilerim</h4>
+            </div>
+            <div class="col-xl-10">
+                @using (Html.BeginForm("MyProfile", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="wrap-custom-file">
+                                <input type="file" name="avatar" id="image2" accept=".gif, .jpg, .png" onchange="$('#resim')[0].src = window.URL.createObjectURL(this.files[0])" />
+                                <label for="image2">
+                                    <img id="resim" src="~/userimage/@(Model.Avatar != null ? Model.Avatar : "User-01.png")" style="height:260px;width:252px" />
+                                    <span><i class="flaticon-download"></i> Upload Photo </span>
+                                </label>
+                            </div>
+                            <p>*minimum 260px x 260px</p>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleInput1">Firma Adı</label>
+                                @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleEmail">Yetkili Kişinin Adı</label>
+                                @Html.EditorFor(model => model.OfficalName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleInput3">Telefon Numarası</label>
+                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleInput4">Sabit Telefon Numarası</label>
+                                @Html.EditorFor(model => model.LandPhone, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleInput5">Whatsapp Numarası</label>
+                                @Html.EditorFor(model => model.WhatsappNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleInput6">Mail</label>
+                                @Html.EditorFor(model => model.Mail, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-xl-12 text-right">
+                            <div class="my_profile_setting_input">
+                                <input hidden name="ProfilTetikleyici" value="true" />
+                                <input hidden name="Id" value="@Model.Id" />
+                                <button type="submit" class="btn btn2">Güncelle</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="my_dashboard_review mt30">
+        <div class="row">
+            <div class="col-xl-2">
+                <h4>Sosyal Medya</h4>
+            </div>
+            <div class="col-xl-10">
+                @using (Html.BeginForm("MyProfile", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row">
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleSkype">Skype</label>
+                                @Html.EditorFor(model => model.SocialMedium.Skype, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleWebsite">Website</label>
+                                @Html.EditorFor(model => model.SocialMedium.WebSite, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleFaceBook">Facebook</label>
+                                @Html.EditorFor(model => model.SocialMedium.Facebook, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleTwitter">Twitter</label>
+                                @Html.EditorFor(model => model.SocialMedium.Twitter, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleLinkedin">Linkedin</label>
+                                @Html.EditorFor(model => model.SocialMedium.Linkedin, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleInstagram">Instagram</label>
+                                @Html.EditorFor(model => model.SocialMedium.Instagram, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleGooglePlus">Google Plus</label>
+                                @Html.EditorFor(model => model.SocialMedium.GooglePlus, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleYoutube">Youtube</label>
+                                @Html.EditorFor(model => model.SocialMedium.Youtube, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExamplePinterest">Pinterest</label>
+                                @Html.EditorFor(model => model.SocialMedium.Pinterest, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleVimeo">Vimeo</label>
+                                @Html.EditorFor(model => model.SocialMedium.Vimeo, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-xl-12 text-right">
+                            <div class="my_profile_setting_input">
+                                <input hidden name="SosyalMedyaTetikleyici" value="true" />
+                                <input hidden name="Id" value="@Model.Id" />
+                                <button type="submit" class="btn btn2">Güncelle</button>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+    <div class="my_dashboard_review mt30">
+        @using (Html.BeginForm("MyProfile", "User", FormMethod.Post, new { enctype = "multipart/form-data", @onSubmit = "return checkPassword(this)" }))
+        {
+            <div class="row">
+                <div class="col-xl-2">
+                    <h4>Parola Güncelle</h4>
+                </div>
+                <div class="col-xl-10">
+                    <div class="row">
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleNewPass">Yeni Parola</label>
+                                <input type="password" name="Password" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="my_profile_setting_input form-group">
+                                <label for="formGroupExampleConfPass">Yeni Parola(Tekrar)</label>
+                                <input type="password" name="PasswordAgain" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-xl-12">
+                            <div class="my_profile_setting_input float-right fn-520">
+                                <input hidden name="ParolaTetikleyici" value="true" />
+                                <input hidden name="Id" value="@Model.Id" />
+                                <button id="myBtn" onclick="matchPassword()" class="btn btn2 btn-dark">Güncelle</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="my_profile_setting_input form-group">
+                                <label id="mesaj1" style="color:orangered"></label><br />
+                                <label id="mesaj2" style="color:#19d840"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts
+{
+    <script>
+        function checkPassword(form) {
+            Password = form.Password.value;
+            PasswordAgain = form.PasswordAgain.value;
+            if (Password != PasswordAgain) {
+                var x = "Parolalar Uyuşmuyor.";
+                document.getElementById("mesaj1").innerHTML = x;
+                return false;
+            }
+            else {
+                var x = "Başarlı, Yönlendiriliyorsunuz...";
+                document.getElementById("mesaj2").innerHTML = x;
+                return true;
+            }
+        }
+    </script>
+}
