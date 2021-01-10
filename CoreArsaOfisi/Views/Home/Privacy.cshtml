@@ -1,5 +1,4 @@
-﻿@using CoreArsaOfisi.DataLayer.Models.db;
-@model Advertiser
+﻿@model IEnumerable<CoreArsaOfisi.DataLayer.Models.db.Advertiser>
 
 
 {
@@ -10,9 +9,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>@Model.OfficalName</td>
-            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CompanyName</td>
+                </tr>
+            }
+
         </tbody>
     </table>
 }

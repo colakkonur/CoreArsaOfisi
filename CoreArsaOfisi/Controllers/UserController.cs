@@ -1,5 +1,5 @@
-﻿using CoreArsaOfisi.Models;
-using CoreArsaOfisi.Models.db;
+﻿using CoreArsaOfisi.DataLayer.Models.db;
+using CoreArsaOfisi.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

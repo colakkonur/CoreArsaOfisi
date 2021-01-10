@@ -36,6 +36,7 @@ namespace CoreArsaOfisi.DataLayer.Models.db
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=94.73.146.5;initial catalog=u9673886_arsdb;persist security info=True;user id=u9673886_arsdb;password=FStx14J6HPwq20L;MultipleActiveResultSets=True;");
             }
         }
@@ -309,29 +310,47 @@ namespace CoreArsaOfisi.DataLayer.Models.db
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.Facebook).HasMaxLength(60);
+                entity.Property(e => e.Facebook)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
                 entity.Property(e => e.GooglePlus)
                     .HasMaxLength(60)
-                    .HasColumnName("Google_Plus");
+                    .HasColumnName("Google_Plus")
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Instagram).HasMaxLength(60);
+                entity.Property(e => e.Instagram)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Linkedin).HasMaxLength(60);
+                entity.Property(e => e.Linkedin)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Pinterest).HasMaxLength(60);
+                entity.Property(e => e.Pinterest)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Skype).HasMaxLength(60);
+                entity.Property(e => e.Skype)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Twitter).HasMaxLength(60);
+                entity.Property(e => e.Twitter)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Vimeo).HasMaxLength(60);
+                entity.Property(e => e.Vimeo)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
                 entity.Property(e => e.WebSite)
                     .HasMaxLength(60)
-                    .HasColumnName("Web_Site");
+                    .HasColumnName("Web_Site")
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Youtube).HasMaxLength(60);
+                entity.Property(e => e.Youtube)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
                 entity.HasOne(d => d.IdNavigation)
                     .WithOne(p => p.SocialMedium)

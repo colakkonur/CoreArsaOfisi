@@ -1,4 +1,4 @@
-using CoreArsaOfisi.Models.db;
+using CoreArsaOfisi.DataLayer.Models.db;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
