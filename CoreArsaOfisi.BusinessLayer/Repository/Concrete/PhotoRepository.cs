@@ -47,10 +47,9 @@ namespace CoreArsaOfisi.BusinessLayer.Repository.Concrete
             context.Set<Photo>().Remove(entity);
         }
 
-        public async void Remove(int Id)
+        public void Remove(int Id)
         {
-            //var model = await context.Set<Photo>().Where(x => x.Id == Id).FirstOrDefaultAsync();
-            //context.Remove(model);
+            throw new NotImplementedException();
         }
 
         public void RemoveRange(IEnumerable<Photo> entites)
