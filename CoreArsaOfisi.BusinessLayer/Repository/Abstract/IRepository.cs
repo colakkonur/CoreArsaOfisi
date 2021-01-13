@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace CoreArsaOfisi.BusinessLayer.Repository.Abstract
 {
-    public interface IRepository
+    public interface IRepository<T> where T: class
     {
-        Task<T> GetByIdAsync<T>(int Id) where T:class;
-        Task<IEnumerable<T>> GetAllAsync<T>() where T : class;
-        Task<IEnumerable<T>> Find<T>(Expression<Func<T, bool>> predicate) where T : class;
-        Task<T> SingleOrDefaultAsync<T>(Expression<Func<T, bool>> predicate) where T : class;
-        Task AddAsync<T>(T entity) where T : class;
-        Task AddRangeAsync<T>(IEnumerable<T> entities);
-        void Remove<T>(T entity) where T : class;
-        void Remove<T>(int Id) where T : class;
-        void RemoveRange<T>(IEnumerable<T> entites) where T : class;
+        ValueTask<T> GetByIdAsync(int Id);
+        Task<IEnumerable<T>> GetAllAsync();
+        IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
+        Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> predicate);
+        Task AddAsync(T entity);
+        Task AddRangeAsync(IEnumerable<T> entities);
+        void Remove(T entity);
+        void Remove(int Id);
+        void RemoveRange(IEnumerable<T> entites);
     }
 }
