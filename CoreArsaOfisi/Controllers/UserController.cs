@@ -17,6 +17,8 @@ namespace CoreArsaOfisi.Controllers
         private readonly u9673886_arsdbContext _db;
         private readonly IWebHostEnvironment _hostingEnvironment;
 
+        
+
         public UserController(u9673886_arsdbContext db, IWebHostEnvironment hostingEnvironment)
         {
             _db = db;

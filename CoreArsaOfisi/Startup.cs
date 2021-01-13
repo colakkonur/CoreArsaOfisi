@@ -1,3 +1,5 @@
+using CoreArsaOfisi.BusinessLayer.Repository.Abstract;
+using CoreArsaOfisi.BusinessLayer.Repository.Concrete;
 using CoreArsaOfisi.DataLayer.Models.db;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -26,6 +28,7 @@ namespace CoreArsaOfisi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<IRepository,EFCoreRepository<u9673886_arsdbContext>>();
             services.AddDbContext<u9673886_arsdbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
             //Giriþ Ýþlemi için.
