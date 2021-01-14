@@ -1,5 +1,4 @@
-﻿using CoreArsaOfisi.BusinessLayer.Repository.Concrete;
-using CoreArsaOfisi.DataLayer.Models.db;
+﻿using CoreArsaOfisi.DataLayer.Models.db;
 using System;
 using System.Collections.Generic;
 using System.Text;

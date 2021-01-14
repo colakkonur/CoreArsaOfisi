@@ -1,6 +1,4 @@
 using CoreArsaOfisi.BusinessLayer.Repositories;
-using CoreArsaOfisi.BusinessLayer.Repository.Abstract;
-using CoreArsaOfisi.BusinessLayer.Repository.Concrete;
 using CoreArsaOfisi.DataLayer.Models.db;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
