@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CoreArsaOfisi.BusinessLayer.Repositories.Abstract
 {
-    interface IDeedStatusRepository:IRepository<DeedStatus>
+    public interface IDeedStatusRepository:IRepository<DeedStatus>
     {
     }
 }

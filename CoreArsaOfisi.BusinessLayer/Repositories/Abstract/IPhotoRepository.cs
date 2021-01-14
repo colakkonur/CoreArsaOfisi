@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CoreArsaOfisi.BusinessLayer.Repositories.Abstract
 {
-    interface IPhotoRepository:IRepository<Photo>
+    public interface IPhotoRepository:IRepository<Photo>
     {
     }
 }

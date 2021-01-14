@@ -1,4 +1,5 @@
-﻿@model CoreArsaOfisi.Models.ViewModels.AdvertisementsListViewModel
+﻿@using CoreArsaOfisi.DataLayer.Models.db
+@model IEnumerable<Advertisement>
 @{
     ViewData["Title"] = "Advertisements";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -584,7 +585,7 @@
                 <div class="row">
 
                     @*ürün*@
-                    @foreach (var item in Model.Advertisements)
+                    @foreach (var item in Model)
                     {
                         <div class="col-md-6 col-lg-6">
                             <div class="feat_property home7 style4">
@@ -638,7 +639,7 @@
                                             <p><span class="flaticon-placeholder"></span>@item.Adress</p>
                                             <ul class="prop_details mb0">
                                                 <li class="list-inline-item"><a href="#">@item.District.DistrictName - @item.District.Province.ProvinceName </a></li>
-                                                <li class="list-inline-item"><a href="#">M²: METREKARE </a></li>
+                                                <li class="list-inline-item">< href="#"> M²: @item.AdvertisementDetail.ASquareMeters </></li>
                                             </ul>
                                         </div>
                                     </a>

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CoreArsaOfisi.BusinessLayer.Repositories.Abstract
 {
-    interface IAdvertisementTypePropertyRepository:IRepository<AdvertisementTypeProperty>
+    public interface IAdvertisementTypePropertyRepository:IRepository<AdvertisementTypeProperty>
     {
     }
 }

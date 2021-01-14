@@ -50,10 +50,7 @@ namespace CoreArsaOfisi.Controllers
 
         public async Task<IActionResult> Advertisements()
         {
-            AdvertisementsListViewModel model = new AdvertisementsListViewModel
-            {
-                
-            };
+            var model = await unitOfWork.AdvertisementRepository.GetAdvertisements();
             return View(model);
         }
     }

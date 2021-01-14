@@ -8,6 +8,6 @@ namespace CoreArsaOfisi.BusinessLayer.Repositories.Abstract
 {
     public interface IAdvertisementRepository:IRepository<Advertisement>
     {
-        Task<List<Advertisement>> GetAdvertisements();
+        Task<IEnumerable<Advertisement>> GetAdvertisements();
     }
 }

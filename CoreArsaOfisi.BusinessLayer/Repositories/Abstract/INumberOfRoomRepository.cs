@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CoreArsaOfisi.BusinessLayer.Repositories.Abstract
 {
-    interface INumberOfRoomRepository:IRepository<NumberOfRoom>
+    public interface INumberOfRoomRepository:IRepository<NumberOfRoom>
     {
 
     }

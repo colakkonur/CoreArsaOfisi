@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CoreArsaOfisi.BusinessLayer.Repositories.Abstract
 {
-    interface IProvinceRepository:IRepository<Province>
+    public interface IProvinceRepository:IRepository<Province>
     {
 
     }

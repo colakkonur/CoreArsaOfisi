@@ -15,11 +15,13 @@ namespace CoreArsaOfisi.BusinessLayer.Repositories.Concrete
 
         }
 
-        public async Task<List<Advertisement>> GetAdvertisements()
+        public async Task<IEnumerable<Advertisement>> GetAdvertisements()
         {
             return await _ArsdbContext.Advertisements
                .Include(x => x.AdvertisementType)
-               .Include(x => x.District)
+               .Include(x=>x.Photos)
+               .Include(x=>x.Advertiser)
+               .Include(x => x.District).ThenInclude(x => x.Province)
                .ToListAsync();
         }
 

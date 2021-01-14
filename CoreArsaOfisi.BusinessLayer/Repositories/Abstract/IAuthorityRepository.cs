@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CoreArsaOfisi.BusinessLayer.Repositories.Abstract
 {
-    interface IAuthorityRepository:IRepository<Authority>
+    public interface IAuthorityRepository:IRepository<Authority>
     {
     }
 }
