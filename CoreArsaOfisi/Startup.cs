@@ -1,3 +1,4 @@
+using CoreArsaOfisi.BusinessLayer.Repositories;
 using CoreArsaOfisi.BusinessLayer.Repository.Abstract;
 using CoreArsaOfisi.BusinessLayer.Repository.Concrete;
 using CoreArsaOfisi.DataLayer.Models.db;
@@ -28,7 +29,7 @@ namespace CoreArsaOfisi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddScoped<IRepository,EFCoreRepository<u9673886_arsdbContext>>();
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddDbContext<u9673886_arsdbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
             //Giriþ Ýþlemi için.

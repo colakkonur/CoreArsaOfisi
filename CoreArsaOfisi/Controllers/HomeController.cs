@@ -1,4 +1,5 @@
-﻿using CoreArsaOfisi.BusinessLayer.Repository;
+﻿using CoreArsaOfisi.BusinessLayer.Repositories;
+using CoreArsaOfisi.BusinessLayer.Repository;
 using CoreArsaOfisi.BusinessLayer.Repository.Abstract;
 using CoreArsaOfisi.BusinessLayer.Repository.Concrete;
 using CoreArsaOfisi.DataLayer.Models.db;
@@ -22,13 +23,12 @@ namespace CoreArsaOfisi.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly u9673886_arsdbContext db;
-        private readonly IRepository repository;
-
-        public HomeController(ILogger<HomeController> logger, u9673886_arsdbContext _db, IRepository _repository)
+        private readonly IUnitOfWork unitOfWork;
+        public HomeController(ILogger<HomeController> logger, u9673886_arsdbContext _db, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             db = _db;
-            repository = _repository;
+            this.unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
@@ -41,8 +41,8 @@ namespace CoreArsaOfisi.Controllers
         [Route("Deneme")]
         public async Task<IActionResult> Privacy()
         {
-            await AdvertisementProcess.GetAllAsync();
-            return View();
+            var model=await unitOfWork.AdvertisementRepository.GetAdvertisements();
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -55,8 +55,7 @@ namespace CoreArsaOfisi.Controllers
         {
             AdvertisementsListViewModel model = new AdvertisementsListViewModel
             {
-                Advertisements = await AdvertisementProcess.GetAllAsync(),
-                Photos = await AdvertisementProcess.Photos()
+                
             };
             return View(model);
         }
