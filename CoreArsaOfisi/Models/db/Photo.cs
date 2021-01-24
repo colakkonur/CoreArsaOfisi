@@ -10,7 +10,9 @@ namespace CoreArsaOfisi.Models.db
         public int PhotoId { get; set; }
         public int? AdvertisementId { get; set; }
         public string PhotoUrl { get; set; }
+        public short FotTipId { get; set; }
 
         public virtual Advertisement Advertisement { get; set; }
+        public virtual TblRefTip FotTip { get; set; }
     }
 }

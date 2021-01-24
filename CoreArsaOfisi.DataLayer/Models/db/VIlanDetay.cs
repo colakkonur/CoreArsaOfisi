@@ -5,14 +5,32 @@ using System.Collections.Generic;
 
 namespace CoreArsaOfisi.DataLayer.Models.db
 {
-    public partial class AdvertisementDetail
+    public partial class VIlanDetay
     {
-        public int AdvertisementDetailId { get; set; }
+        public string Title { get; set; }
+        public string Explanation { get; set; }
+        public bool? IsApproved { get; set; }
+        public bool? IsForSale { get; set; }
+        public bool? SwapStatus { get; set; }
+        public bool? AvailableForLoan { get; set; }
+        public decimal? Price { get; set; }
+        public string Adress { get; set; }
+        public DateTime? AdvertisementDate { get; set; }
+        public string CompanyName { get; set; }
+        public string OfficalName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string LandPhone { get; set; }
+        public string WhatsappNumber { get; set; }
+        public string Mail { get; set; }
+        public string Avatar { get; set; }
+        public int Id { get; set; }
+        public string RoomName { get; set; }
+        public string DeedStatusName { get; set; }
+        public string AdvertisementTypeName { get; set; }
         public int? LSquareMeters { get; set; }
         public int? LAdaNo { get; set; }
         public int? LPaftaNo { get; set; }
         public int? LParselNo { get; set; }
-        public int? LDeedStatudId { get; set; }
         public bool? LZoningStatus { get; set; }
         public int? HNetSquareMeters { get; set; }
         public int? HGrossSquareMeters { get; set; }
@@ -25,8 +43,6 @@ namespace CoreArsaOfisi.DataLayer.Models.db
         public short? HNumberofBathrooms { get; set; }
         public short? HNumberofWc { get; set; }
         public bool? HInsidetheSite { get; set; }
-        public int? NumberOfRoomsId { get; set; }
-        public int? BuildingType { get; set; }
         public short? ANumberofFloors { get; set; }
         public int? AFlatsOnTheFloor { get; set; }
         public string AHealtingType { get; set; }
@@ -37,11 +53,8 @@ namespace CoreArsaOfisi.DataLayer.Models.db
         public int? WApartmentAge { get; set; }
         public short? WFloorLocation { get; set; }
         public string WHealtingType { get; set; }
-        public int? AdvertisementId { get; set; }
-
-        public virtual Advertisement Advertisement { get; set; }
-        public virtual BuildingType BuildingTypeNavigation { get; set; }
-        public virtual DeedStatus LDeedStatud { get; set; }
-        public virtual NumberOfRoom NumberOfRooms { get; set; }
+        public string TypeName { get; set; }
+        public string DistrictName { get; set; }
+        public string ProvinceName { get; set; }
     }
 }

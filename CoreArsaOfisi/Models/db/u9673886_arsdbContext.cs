@@ -31,6 +31,9 @@ namespace CoreArsaOfisi.Models.db
         public virtual DbSet<Property> Properties { get; set; }
         public virtual DbSet<Province> Provinces { get; set; }
         public virtual DbSet<SocialMedium> SocialMedia { get; set; }
+        public virtual DbSet<TblRefTip> TblRefTips { get; set; }
+        public virtual DbSet<VIlanDetay> VIlanDetays { get; set; }
+        public virtual DbSet<VIlanListesi> VIlanListesis { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -81,55 +84,72 @@ namespace CoreArsaOfisi.Models.db
             {
                 entity.ToTable("AdvertisementDetail");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.AdvertisementDetailId).HasColumnName("Advertisement_Detail_Id");
 
-                entity.Property(e => e.AApartmentAge).HasColumnName("A_ApartmentAge");
+                entity.Property(e => e.AApartmentAge)
+                    .HasColumnName("A_ApartmentAge")
+                    .HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.ABuildingType).HasColumnName("A_BuildingType");
-
-                entity.Property(e => e.AFlatsOnTheFloor).HasColumnName("A_FlatsOnTheFloor");
+                entity.Property(e => e.AFlatsOnTheFloor)
+                    .HasColumnName("A_FlatsOnTheFloor")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.AHealtingType)
                     .HasMaxLength(50)
                     .HasColumnName("A_HealtingType");
 
-                entity.Property(e => e.ANumberOfRoomsId).HasColumnName("A_NumberOfRoomsId");
+                entity.Property(e => e.ANumberofFloors)
+                    .HasColumnName("A_NumberofFloors")
+                    .HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.ANumberofFloors).HasColumnName("A_NumberofFloors");
+                entity.Property(e => e.ASquareMeters)
+                    .HasColumnName("A_SquareMeters")
+                    .HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.ASquareMeters).HasColumnName("A_SquareMeters");
+                entity.Property(e => e.BuildingType).HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.HBuildingAge).HasColumnName("H_BuildingAge");
-
-                entity.Property(e => e.HBuildingTypeId).HasColumnName("H_BuildingTypeId");
+                entity.Property(e => e.HBuildingAge)
+                    .HasColumnName("H_BuildingAge")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.HDues)
                     .HasColumnType("money")
                     .HasColumnName("H_Dues");
 
-                entity.Property(e => e.HFloorLocation).HasColumnName("H_FloorLocation");
+                entity.Property(e => e.HFloorLocation)
+                    .HasColumnName("H_FloorLocation")
+                    .HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.HGrossSquareMeters).HasColumnName("H_GrossSquareMeters");
+                entity.Property(e => e.HGrossSquareMeters)
+                    .HasColumnName("H_GrossSquareMeters")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.HHealtingType)
                     .HasMaxLength(40)
                     .HasColumnName("H_HealtingType");
 
-                entity.Property(e => e.HInsidetheSite).HasColumnName("H_InsidetheSite");
+                entity.Property(e => e.HInsidetheSite)
+                    .HasColumnName("H_InsidetheSite")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.HNetSquareMeters).HasColumnName("H_NetSquareMeters");
 
-                entity.Property(e => e.HNumberOfRoomsId).HasColumnName("H_NumberOfRoomsId");
+                entity.Property(e => e.HNumberofBathrooms)
+                    .HasColumnName("H_NumberofBathrooms")
+                    .HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.HNumberofBathrooms).HasColumnName("H_NumberofBathrooms");
+                entity.Property(e => e.HNumberofFloorsoftheBuilding)
+                    .HasColumnName("H_NumberofFloorsoftheBuilding")
+                    .HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.HNumberofFloorsoftheBuilding).HasColumnName("H_NumberofFloorsoftheBuilding");
-
-                entity.Property(e => e.HNumberofWc).HasColumnName("H_NumberofWC");
+                entity.Property(e => e.HNumberofWc)
+                    .HasColumnName("H_NumberofWC")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.HRentalIncome)
                     .HasColumnType("money")
-                    .HasColumnName("H_RentalIncome");
+                    .HasColumnName("H_RentalIncome")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.LAdaNo).HasColumnName("L_AdaNo");
 
@@ -143,57 +163,46 @@ namespace CoreArsaOfisi.Models.db
 
                 entity.Property(e => e.LZoningStatus).HasColumnName("L_ZoningStatus");
 
-                entity.Property(e => e.WApartmentAge).HasColumnName("W_ApartmentAge");
+                entity.Property(e => e.NumberOfRoomsId).HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.WBuildingTypeId).HasColumnName("W_BuildingTypeId");
+                entity.Property(e => e.WApartmentAge)
+                    .HasColumnName("W_ApartmentAge")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.WFloorLocation).HasColumnName("W_FloorLocation");
 
-                entity.Property(e => e.WGrossSquareMeters).HasColumnName("W_GrossSquareMeters");
+                entity.Property(e => e.WGrossSquareMeters)
+                    .HasColumnName("W_GrossSquareMeters")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.WHealtingType)
                     .HasMaxLength(30)
-                    .HasColumnName("W_HealtingType");
+                    .HasColumnName("W_HealtingType")
+                    .HasDefaultValueSql("(N'Belirtilmemiş')");
 
-                entity.Property(e => e.WNetSquareMeters).HasColumnName("W_NetSquareMeters");
+                entity.Property(e => e.WNetSquareMeters)
+                    .HasColumnName("W_NetSquareMeters")
+                    .HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.WNumberOfRooms).HasColumnName("W_NumberOfRooms");
-
-                entity.HasOne(d => d.ABuildingTypeNavigation)
-                    .WithMany(p => p.AdvertisementDetailABuildingTypeNavigations)
-                    .HasForeignKey(d => d.ABuildingType)
-                    .HasConstraintName("FK_AdvertisementDetail_BuildingType1");
-
-                entity.HasOne(d => d.ANumberOfRooms)
-                    .WithMany(p => p.AdvertisementDetailANumberOfRooms)
-                    .HasForeignKey(d => d.ANumberOfRoomsId)
-                    .HasConstraintName("FK_AdvertisementDetail_NumberOfRooms1");
-
-                entity.HasOne(d => d.HBuildingType)
-                    .WithMany(p => p.AdvertisementDetailHBuildingTypes)
-                    .HasForeignKey(d => d.HBuildingTypeId)
-                    .HasConstraintName("FK_AdvertisementDetail_BuildingType");
-
-                entity.HasOne(d => d.HNumberOfRooms)
-                    .WithMany(p => p.AdvertisementDetailHNumberOfRooms)
-                    .HasForeignKey(d => d.HNumberOfRoomsId)
-                    .HasConstraintName("FK_AdvertisementDetail_NumberOfRooms");
-
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.AdvertisementDetail)
-                    .HasForeignKey<AdvertisementDetail>(d => d.Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                entity.HasOne(d => d.Advertisement)
+                    .WithMany(p => p.AdvertisementDetails)
+                    .HasForeignKey(d => d.AdvertisementId)
                     .HasConstraintName("FK_AdvertisementDetail_Advertisement");
+
+                entity.HasOne(d => d.BuildingTypeNavigation)
+                    .WithMany(p => p.AdvertisementDetails)
+                    .HasForeignKey(d => d.BuildingType)
+                    .HasConstraintName("FK_AdvertisementDetail_BuildingType1");
 
                 entity.HasOne(d => d.LDeedStatud)
                     .WithMany(p => p.AdvertisementDetails)
                     .HasForeignKey(d => d.LDeedStatudId)
                     .HasConstraintName("FK_AdvertisementDetail_DeedStatus");
 
-                entity.HasOne(d => d.WBuildingType)
-                    .WithMany(p => p.AdvertisementDetailWBuildingTypes)
-                    .HasForeignKey(d => d.WBuildingTypeId)
-                    .HasConstraintName("FK_AdvertisementDetail_BuildingType2");
+                entity.HasOne(d => d.NumberOfRooms)
+                    .WithMany(p => p.AdvertisementDetails)
+                    .HasForeignKey(d => d.NumberOfRoomsId)
+                    .HasConstraintName("FK_AdvertisementDetail_NumberOfRooms1");
             });
 
             modelBuilder.Entity<AdvertisementType>(entity =>
@@ -286,12 +295,20 @@ namespace CoreArsaOfisi.Models.db
 
             modelBuilder.Entity<Photo>(entity =>
             {
+                entity.Property(e => e.FotTipId).HasColumnName("FotTipID");
+
                 entity.Property(e => e.PhotoUrl).HasMaxLength(50);
 
                 entity.HasOne(d => d.Advertisement)
                     .WithMany(p => p.Photos)
                     .HasForeignKey(d => d.AdvertisementId)
-                    .HasConstraintName("FK_Photos_Advertisement");
+                    .HasConstraintName("FK_Photos_Advertisement1");
+
+                entity.HasOne(d => d.FotTip)
+                    .WithMany(p => p.Photos)
+                    .HasForeignKey(d => d.FotTipId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Photos_tbl_Ref_Tip");
             });
 
             modelBuilder.Entity<Property>(entity =>
@@ -310,35 +327,196 @@ namespace CoreArsaOfisi.Models.db
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.Facebook).HasMaxLength(60);
+                entity.Property(e => e.Facebook)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
                 entity.Property(e => e.GooglePlus)
                     .HasMaxLength(60)
-                    .HasColumnName("Google_Plus");
+                    .HasColumnName("Google_Plus")
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Instagram).HasMaxLength(60);
+                entity.Property(e => e.Instagram)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Linkedin).HasMaxLength(60);
+                entity.Property(e => e.Linkedin)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Pinterest).HasMaxLength(60);
+                entity.Property(e => e.Pinterest)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Skype).HasMaxLength(60);
+                entity.Property(e => e.Skype)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Twitter).HasMaxLength(60);
+                entity.Property(e => e.Twitter)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Vimeo).HasMaxLength(60);
+                entity.Property(e => e.Vimeo)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
                 entity.Property(e => e.WebSite)
                     .HasMaxLength(60)
-                    .HasColumnName("Web_Site");
+                    .HasColumnName("Web_Site")
+                    .HasDefaultValueSql("(N'-')");
 
-                entity.Property(e => e.Youtube).HasMaxLength(60);
+                entity.Property(e => e.Youtube)
+                    .HasMaxLength(60)
+                    .HasDefaultValueSql("(N'-')");
 
                 entity.HasOne(d => d.IdNavigation)
                     .WithOne(p => p.SocialMedium)
                     .HasForeignKey<SocialMedium>(d => d.Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SocialMedia_Id");
+            });
+
+            modelBuilder.Entity<TblRefTip>(entity =>
+            {
+                entity.ToTable("tbl_Ref_Tip");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("id");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(100)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.OrdId).HasColumnName("ordId");
+
+                entity.Property(e => e.Vsbl).HasColumnName("vsbl");
+            });
+
+            modelBuilder.Entity<VIlanDetay>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("V_ilan_detay");
+
+                entity.Property(e => e.AApartmentAge).HasColumnName("A_ApartmentAge");
+
+                entity.Property(e => e.AFlatsOnTheFloor).HasColumnName("A_FlatsOnTheFloor");
+
+                entity.Property(e => e.AHealtingType)
+                    .HasMaxLength(50)
+                    .HasColumnName("A_HealtingType");
+
+                entity.Property(e => e.ANumberofFloors).HasColumnName("A_NumberofFloors");
+
+                entity.Property(e => e.ASquareMeters).HasColumnName("A_SquareMeters");
+
+                entity.Property(e => e.Adress).HasMaxLength(300);
+
+                entity.Property(e => e.AdvertisementDate).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.AdvertisementTypeName).HasMaxLength(50);
+
+                entity.Property(e => e.Avatar).HasMaxLength(50);
+
+                entity.Property(e => e.CompanyName).HasMaxLength(70);
+
+                entity.Property(e => e.DeedStatusName).HasMaxLength(50);
+
+                entity.Property(e => e.DistrictName).HasMaxLength(50);
+
+                entity.Property(e => e.HBuildingAge).HasColumnName("H_BuildingAge");
+
+                entity.Property(e => e.HDues)
+                    .HasColumnType("money")
+                    .HasColumnName("H_Dues");
+
+                entity.Property(e => e.HFloorLocation).HasColumnName("H_FloorLocation");
+
+                entity.Property(e => e.HGrossSquareMeters).HasColumnName("H_GrossSquareMeters");
+
+                entity.Property(e => e.HHealtingType)
+                    .HasMaxLength(40)
+                    .HasColumnName("H_HealtingType");
+
+                entity.Property(e => e.HInsidetheSite).HasColumnName("H_InsidetheSite");
+
+                entity.Property(e => e.HNumberofBathrooms).HasColumnName("H_NumberofBathrooms");
+
+                entity.Property(e => e.HNumberofFloorsoftheBuilding).HasColumnName("H_NumberofFloorsoftheBuilding");
+
+                entity.Property(e => e.HNumberofWc).HasColumnName("H_NumberofWC");
+
+                entity.Property(e => e.HRentalIncome)
+                    .HasColumnType("money")
+                    .HasColumnName("H_RentalIncome");
+
+                entity.Property(e => e.IsApproved).HasColumnName("isApproved");
+
+                entity.Property(e => e.IsForSale).HasColumnName("isForSale");
+
+                entity.Property(e => e.LandPhone).HasMaxLength(11);
+
+                entity.Property(e => e.Mail).HasMaxLength(50);
+
+                entity.Property(e => e.OfficalName).HasMaxLength(50);
+
+                entity.Property(e => e.PhoneNumber).HasMaxLength(11);
+
+                entity.Property(e => e.Price).HasColumnType("money");
+
+                entity.Property(e => e.ProvinceName).HasMaxLength(50);
+
+                entity.Property(e => e.RoomName).HasMaxLength(50);
+
+                entity.Property(e => e.Title).HasMaxLength(200);
+
+                entity.Property(e => e.TypeName).HasMaxLength(50);
+
+                entity.Property(e => e.WApartmentAge).HasColumnName("W_ApartmentAge");
+
+                entity.Property(e => e.WFloorLocation).HasColumnName("W_FloorLocation");
+
+                entity.Property(e => e.WGrossSquareMeters).HasColumnName("W_GrossSquareMeters");
+
+                entity.Property(e => e.WHealtingType)
+                    .HasMaxLength(30)
+                    .HasColumnName("W_HealtingType");
+
+                entity.Property(e => e.WNetSquareMeters).HasColumnName("W_NetSquareMeters");
+
+                entity.Property(e => e.WhatsappNumber).HasMaxLength(11);
+            });
+
+            modelBuilder.Entity<VIlanListesi>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("V_ilan_listesi");
+
+                entity.Property(e => e.Adress).HasMaxLength(300);
+
+                entity.Property(e => e.AdvertisementDate).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.AdvertisementTypeName).HasMaxLength(50);
+
+                entity.Property(e => e.Avatar).HasMaxLength(50);
+
+                entity.Property(e => e.CompanyName).HasMaxLength(70);
+
+                entity.Property(e => e.DistrictName).HasMaxLength(50);
+
+                entity.Property(e => e.IsApproved).HasColumnName("isApproved");
+
+                entity.Property(e => e.IsForSale).HasColumnName("isForSale");
+
+                entity.Property(e => e.PhotoUrl).HasMaxLength(50);
+
+                entity.Property(e => e.Price).HasColumnType("money");
+
+                entity.Property(e => e.ProvinceName).HasMaxLength(50);
+
+                entity.Property(e => e.Title).HasMaxLength(200);
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -9,6 +9,7 @@ namespace CoreArsaOfisi.DataLayer.Models.db
     {
         public Advertisement()
         {
+            AdvertisementDetails = new HashSet<AdvertisementDetail>();
             Photos = new HashSet<Photo>();
         }
 
@@ -29,7 +30,7 @@ namespace CoreArsaOfisi.DataLayer.Models.db
         public virtual AdvertisementType AdvertisementType { get; set; }
         public virtual Advertiser Advertiser { get; set; }
         public virtual District District { get; set; }
-        public virtual AdvertisementDetail AdvertisementDetail { get; set; }
+        public virtual ICollection<AdvertisementDetail> AdvertisementDetails { get; set; }
         public virtual ICollection<Photo> Photos { get; set; }
     }
 }

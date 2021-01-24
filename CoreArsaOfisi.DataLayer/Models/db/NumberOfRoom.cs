@@ -9,14 +9,12 @@ namespace CoreArsaOfisi.DataLayer.Models.db
     {
         public NumberOfRoom()
         {
-            AdvertisementDetailANumberOfRooms = new HashSet<AdvertisementDetail>();
-            AdvertisementDetailHNumberOfRooms = new HashSet<AdvertisementDetail>();
+            AdvertisementDetails = new HashSet<AdvertisementDetail>();
         }
 
         public int Id { get; set; }
         public string RoomName { get; set; }
 
-        public virtual ICollection<AdvertisementDetail> AdvertisementDetailANumberOfRooms { get; set; }
-        public virtual ICollection<AdvertisementDetail> AdvertisementDetailHNumberOfRooms { get; set; }
+        public virtual ICollection<AdvertisementDetail> AdvertisementDetails { get; set; }
     }
 }

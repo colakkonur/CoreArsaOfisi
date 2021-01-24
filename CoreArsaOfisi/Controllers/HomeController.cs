@@ -5,6 +5,7 @@ using CoreArsaOfisi.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -35,10 +36,29 @@ namespace CoreArsaOfisi.Controllers
             return View();
         }
 
+        [Route("ilanlar")]
+        public async Task<IActionResult> Advertisements()
+        {
+            //var model = await unitOfWork.AdvertisementRepository.GetAdvertisements();
+            var model = await db.VIlanListesis.ToListAsync();
+            return View(model);
+        }
+
+        [Route("detay")]
+        public async Task<IActionResult> AdvertisementDetail(int? id)
+        {
+            var model = new AdvertisementDetailViewModel()
+            {
+                Advertisement_items = await db.VIlanDetays.Where(w => w.Id == id).FirstOrDefaultAsync(),
+                Photos = await db.Photos.Where(w=>w.AdvertisementId == id).ToListAsync()
+            };
+            return View(model);
+        }
+
         [Route("Deneme")]
         public async Task<IActionResult> Privacy()
         {
-            var model=await unitOfWork.AdvertisementRepository.GetAdvertisements();
+            var model = await unitOfWork.AdvertisementRepository.GetAdvertisements();
             return View(model);
         }
 
@@ -48,10 +68,6 @@ namespace CoreArsaOfisi.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public async Task<IActionResult> Advertisements()
-        {
-            var model = await unitOfWork.AdvertisementRepository.GetAdvertisements();
-            return View(model);
-        }
+
     }
 }

@@ -1,5 +1,5 @@
 ﻿@using CoreArsaOfisi.DataLayer.Models.db
-@model IEnumerable<Advertisement>
+@model IEnumerable<VIlanListesi>
 @{
     ViewData["Title"] = "Advertisements";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -587,66 +587,48 @@
                     @*ürün*@
                     @foreach (var item in Model)
                     {
-                        <div class="col-md-6 col-lg-6">
-                            <div class="feat_property home7 style4">
-                                <div class="thumb">
-                                    <div class="fp_single_item_slider">
-                                        @foreach (var photos in item.Photos.Take(2))
-                                        {
-                                            <a href="@Url.Action("Detail","Home", new { @Id = item.Id })">
-                                                <div class="item">
-                                                    <img class="img-whp" src="~/uploads/@photos.PhotoUrl" alt="@item.Title" style="width:360px;height:240px">
-                                                </div>
-                                            </a>
-                                        }
-                                    </div>
-                                    <div class="thmb_cntnt style2">
-                                        <ul class="tag mb0">
-                                            <li class="list-inline-item">
-                                                @(item.IsForSale == true ? "" : " " )
+                        <div class="col-md-6 col-lg-6" onclick="location.href='@Url.Action("AdvertisementDetail","Home", new { @Id = item.Id })';">
+                            <div class="feat_property home7">
+                                    <div class="thumb">
+                                        <div><a href="@Url.Action("AdvertisementDetail","Home", new { @Id = item.Id })"><img class="img-whp" src="~/uploads/@item.PhotoUrl" alt="@item.Title" style="width:360px;height:240px"></a></div>
+                                        <div class="thmb_cntnt">
+                                            <ul class="tag mb0">
+
+
                                                 @if (item.IsForSale == true)
                                                 {
-                                                    <a>Satılık</a>
-
+                                                    <li class="list-inline-item" style="background-color:#0a794d">
+                                                        <a>Satılık</a>
+                                                    </li>
                                                 }
                                                 else
                                                 {
-                                                    <a>Kiralık</a>
+                                                    <li class="list-inline-item" style="background-color:#520a79">
+                                                        <a>Kiralık</a>
+                                                    </li>
                                                 }
-
-                                            </li>
-                                            @if (item.SwapStatus == true)
-                                            {
-                                                <li class="list-inline-item">
-                                                    <a>Takasa Açık</a>
-                                                </li>
-                                            }
-                                        </ul>
-                                    </div>
-                                    <div class="thmb_cntnt style3">
-                                        <ul class="icon mb0">
-                                            <li class="list-inline-item"><a href="#"><span class="flaticon-transfer-1"></span></a></li>
-                                            <li class="list-inline-item"><a href="#"><span class="flaticon-heart"></span></a></li>
-                                        </ul>
-                                        <a class="fp_price" href="#">@string.Format("{0:N0}", item.Price) ₺<small></small></a>
-                                    </div>
-                                </div>
-                                <div class="details">
-                                    <a href="@Url.Action("Detail","Home", new { @Id = item.Id })">
-                                        <div class="tc_content">
-                                            <p class="text-thm">@item.AdvertisementType.AdvertisementTypeName</p>
-                                            <h4>@item.Title</h4>
-                                            <p><span class="flaticon-placeholder"></span>@item.Adress</p>
-                                            <ul class="prop_details mb0">
-                                                <li class="list-inline-item"><a href="#">@item.District.DistrictName - @item.District.Province.ProvinceName </a></li>
-                                                <li class="list-inline-item">< href="#"> M²: @item.AdvertisementDetail.ASquareMeters </></li>
                                             </ul>
+                                            <ul class="icon mb0">
+                                                <li class="list-inline-item"><a href="#"><span class="flaticon-transfer-1"></span></a></li>
+                                                <li class="list-inline-item"><a href="#"><span class="flaticon-heart"></span></a></li>
+                                            </ul>
+                                            <a class="fp_price" href="#">@string.Format("{0:N0}", item.Price) ₺</a>
                                         </div>
-                                    </a>
+                                    </div>
+                                <div class="details">
+                                    <div class="tc_content">
+                                        <p class="text-thm"> @item.AdvertisementTypeName </p>
+                                        <h4>@item.Title</h4>
+                                        <p style="font-size:12px"><span class="flaticon-placeholder"></span> @item.ProvinceName-@item.DistrictName / @item.Adress</p>
+                                        <ul class="prop_details mb0">
+                                            <li class="list-inline-item"><a style="font-size:12px" class="text-thm3" href="#">Takas: <span class="@(item.SwapStatus == true ? "flaticon-tick" : "flaticon-close")" style="color:red"></span> </a></li>
+                                            <li class="list-inline-item"><a style="font-size:12px" class="text-thm3" href="#">Krediye Uygunluk: <span class="@(item.AvailableForLoan == true ? "flaticon-tick" : "flaticon-close")" style="color:red"></span></a></li>
+                                        </ul>
+                                    </div>
                                     <div class="fp_footer">
                                         <ul class="fp_meta float-left mb0">
-                                            <li class="list-inline-item"><a href="#"><img class="useravatar-list" src="~/userimage/@item.Advertiser.Avatar" alt="@item.Advertiser.OfficalName"></a></li>
-                                            <li class="list-inline-item"><a href="#">@item.Advertiser.CompanyName</a></li>
+                                            <li class="list-inline-item"><a href="#"><img class="useravatar-list" src="~/userimage/@item.Avatar" alt="@item.CompanyName"></a></li>
+                                            <li class="list-inline-item"><a href="#">@item.CompanyName</a></li>
                                         </ul>
                                         <div class="fp_pdate float-right">@item.AdvertisementDate.Value.ToString("dd-MM-yyyy")</div>
                                     </div>
