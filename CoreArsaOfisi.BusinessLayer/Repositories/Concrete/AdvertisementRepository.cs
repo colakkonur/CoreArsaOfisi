@@ -25,6 +25,7 @@ namespace CoreArsaOfisi.BusinessLayer.Repositories.Concrete
                .ToListAsync();
         }
 
+
         public u9673886_arsdbContext _ArsdbContext { get { return _context as u9673886_arsdbContext; } }
     }
 }

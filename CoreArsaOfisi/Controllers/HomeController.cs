@@ -36,6 +36,18 @@ namespace CoreArsaOfisi.Controllers
             return View();
         }
 
+        [Route("hakkimizda")]
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        [Route("iletisim")]
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
         [Route("ilanlar")]
         public async Task<IActionResult> Advertisements()
         {
