@@ -26,6 +26,7 @@ namespace CoreArsaOfisi.DataLayer.Models.db
         public virtual DbSet<BuildingType> BuildingTypes { get; set; }
         public virtual DbSet<DeedStatus> DeedStatuses { get; set; }
         public virtual DbSet<District> Districts { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<NumberOfRoom> NumberOfRooms { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Property> Properties { get; set; }
@@ -39,6 +40,7 @@ namespace CoreArsaOfisi.DataLayer.Models.db
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=94.73.146.5;initial catalog=u9673886_arsdb;persist security info=True;user id=u9673886_arsdb;password=FStx14J6HPwq20L;MultipleActiveResultSets=True;");
             }
         }
@@ -287,6 +289,19 @@ namespace CoreArsaOfisi.DataLayer.Models.db
                     .HasConstraintName("FK_District_Province");
             });
 
+            modelBuilder.Entity<Message>(entity =>
+            {
+                entity.Property(e => e.FirstName).HasMaxLength(50);
+
+                entity.Property(e => e.LastName).HasMaxLength(50);
+
+                entity.Property(e => e.Mail).HasMaxLength(50);
+
+                entity.Property(e => e.MessageContent).HasMaxLength(800);
+
+                entity.Property(e => e.Phone).HasMaxLength(11);
+            });
+
             modelBuilder.Entity<NumberOfRoom>(entity =>
             {
                 entity.Property(e => e.RoomName).HasMaxLength(50);
@@ -511,6 +526,8 @@ namespace CoreArsaOfisi.DataLayer.Models.db
 
                 entity.Property(e => e.AdvertisementTypeName).HasMaxLength(50);
 
+                entity.Property(e => e.AdvertiserId).HasColumnName("advertiser_id");
+
                 entity.Property(e => e.Avatar).HasMaxLength(50);
 
                 entity.Property(e => e.CompanyName).HasMaxLength(70);
@@ -526,6 +543,8 @@ namespace CoreArsaOfisi.DataLayer.Models.db
                 entity.Property(e => e.Price).HasColumnType("money");
 
                 entity.Property(e => e.ProvinceName).HasMaxLength(50);
+
+                entity.Property(e => e.TblRefTip).HasColumnName("tbl_ref_tip");
 
                 entity.Property(e => e.Title).HasMaxLength(200);
             });

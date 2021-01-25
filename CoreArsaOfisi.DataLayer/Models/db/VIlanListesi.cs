@@ -21,7 +21,8 @@ namespace CoreArsaOfisi.DataLayer.Models.db
         public bool? SwapStatus { get; set; }
         public bool? AvailableForLoan { get; set; }
         public string Avatar { get; set; }
-        public short Expr1 { get; set; }
+        public short TblRefTip { get; set; }
         public string PhotoUrl { get; set; }
+        public int AdvertiserId { get; set; }
     }
 }

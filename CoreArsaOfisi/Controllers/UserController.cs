@@ -30,6 +30,15 @@ namespace CoreArsaOfisi.Controllers
             return View();
         }
 
+        [Route("ilanlarim")]
+        [HttpGet]
+        public async Task<IActionResult> MyAds()
+        {
+            var model = await _db.VIlanListesis.Where(w => w.AdvertiserId == Convert.ToInt32(CurrentUser.KullaniciId)).ToListAsync();
+            return View(model);
+        }
+
+
         [Route("profilim")]
         [HttpGet]
         public async Task<IActionResult> MyProfile()
@@ -40,9 +49,9 @@ namespace CoreArsaOfisi.Controllers
 
         [Route("profilim")]
         [HttpPost]
-        public IActionResult MyProfile(Advertiser _advertiser, bool? ProfilTetikleyici, bool? SosyalMedyaTetikleyici, bool? ParolaTetikleyici, List<IFormFile> avatar)
+        public async Task<IActionResult> MyProfile(Advertiser _advertiser, bool? ProfilTetikleyici, bool? SosyalMedyaTetikleyici, bool? ParolaTetikleyici, List<IFormFile> avatar)
         {
-            var vHangiKullanici = _db.Advertisers.Include("SocialMedium").Where(w => w.Id == Convert.ToInt32(CurrentUser.KullaniciId)).FirstOrDefault();
+            var vHangiKullanici = await _db.Advertisers.Include("SocialMedium").Where(w => w.Id == Convert.ToInt32(CurrentUser.KullaniciId)).FirstOrDefaultAsync();
             if (ProfilTetikleyici != null && ProfilTetikleyici != false)
             {
                 if (avatar != null)
@@ -61,7 +70,7 @@ namespace CoreArsaOfisi.Controllers
                         string sBenzersizIsim = Guid.NewGuid().ToString("N") + Path.GetExtension(item.FileName);
                         string stream = Path.Combine(_hostingEnvironment.WebRootPath, "userimage", sBenzersizIsim);
                         FileStream ky = new FileStream(stream, FileMode.Create);
-                        item.CopyTo(ky);
+                        await item.CopyToAsync(ky);
                         ky.Close();
                         vHangiKullanici.Avatar = sBenzersizIsim;
                     }
@@ -72,7 +81,7 @@ namespace CoreArsaOfisi.Controllers
                 vHangiKullanici.LandPhone = _advertiser.LandPhone;
                 vHangiKullanici.WhatsappNumber = _advertiser.WhatsappNumber;
                 vHangiKullanici.Mail = _advertiser.Mail;
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
             }
             else if (SosyalMedyaTetikleyici != null && SosyalMedyaTetikleyici != false)
             {
@@ -86,12 +95,12 @@ namespace CoreArsaOfisi.Controllers
                 vHangiKullanici.SocialMedium.Youtube = _advertiser.SocialMedium.Youtube;
                 vHangiKullanici.SocialMedium.Pinterest = _advertiser.SocialMedium.Pinterest;
                 vHangiKullanici.SocialMedium.Vimeo = _advertiser.SocialMedium.Vimeo;
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
             }
             else if (ParolaTetikleyici != null && ParolaTetikleyici != false)
             {
                 vHangiKullanici.Password = _advertiser.Password;
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
             }
             return RedirectToAction("MyProfile");
         }
