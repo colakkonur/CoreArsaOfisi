@@ -48,6 +48,14 @@ namespace CoreArsaOfisi.Controllers
             return View();
         }
 
+        [Route("iletisim")]
+        [HttpPost]
+        public async Task<IActionResult> Contact(Message message)
+        {
+            await db.Messages.AddAsync(message);
+            return View();
+        }
+
         [Route("ilanlar")]
         public async Task<IActionResult> Advertisements()
         {

@@ -31,38 +31,37 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In gravida quis libero eleifend ornare. Maecenas mattis enim at arcu feugiat, sit amet blandit nisl iaculis. Donec lacus odio, malesuada eu libero sit amet, congue aliquam leo. In hac habitasse platea dictumst.</p>
                     <form class="contact_form" id="contact_form" name="contact_form" action="#" method="post" novalidate="novalidate">
                         <div class="row">
-                            @using (Html.BeginForm("SendMessage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
-
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input id="form_name" name="FirstName" class="form-control" required="required" type="text" placeholder="Ad">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input id="form_name" name="LastName" class="form-control" required="required" type="text" placeholder="Soyad">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input id="form_name" name="Phone" class="form-control" required="required" type="number" placeholder="Telefon">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input id="form_name" name="Mail" class="form-control" required="required" type="email" placeholder="Mail">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <textarea id="form_message" name="MessageContent" class="form-control required" rows="8" required="required" placeholder="Mesajınızı giriniz"></textarea>
+                                    </div>
+                                    <div class="form-group mb0">
+                                        <button type="submit" class="btn btn-lg btn-thm">Mesaj Gönder</button>
+                                    </div>
+                                </div>
                             }
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input id="form_name" name="form_name" class="form-control" required="required" type="text" placeholder="Ad">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input id="form_name" name="form_name" class="form-control" required="required" type="text" placeholder="Soyad">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input id="form_name" name="form_name" class="form-control" required="required" type="text" placeholder="Telefon">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input id="form_name" name="form_name" class="form-control" required="required" type="text" placeholder="Mail">
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <textarea id="form_message" name="form_message" class="form-control required" rows="8" required="required" placeholder="Mesajınızı giriniz"></textarea>
-                                </div>
-                                <div class="form-group mb0">
-                                    <button type="button" class="btn btn-lg btn-thm">Mesaj Gönder</button>
-                                </div>
-                            </div>
                         </div>
                     </form>
                 </div>
