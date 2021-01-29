@@ -1,4 +1,4 @@
-﻿using CoreArsaOfisi.BusinessLayer.Repositories;
+﻿using CoreArsaOfisi.BusinessLayer.Business;
 using CoreArsaOfisi.DataLayer.Models.db;
 using CoreArsaOfisi.Models;
 using CoreArsaOfisi.Models.ViewModels;
@@ -21,12 +21,12 @@ namespace CoreArsaOfisi.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly u9673886_arsdbContext db;
-        private readonly IUnitOfWork unitOfWork;
-        public HomeController(ILogger<HomeController> logger, u9673886_arsdbContext _db, IUnitOfWork unitOfWork)
+        
+
+        public HomeController(ILogger<HomeController> logger, u9673886_arsdbContext _db)
         {
             _logger = logger;
             db = _db;
-            this.unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
@@ -52,7 +52,8 @@ namespace CoreArsaOfisi.Controllers
         [HttpPost]
         public async Task<IActionResult> Contact(Message message)
         {
-            await db.Messages.AddAsync(message);
+            MessageBusiness messageBusiness = new MessageBusiness();
+            messageBusiness.AddMessage(message);
             return View();
         }
 
@@ -78,8 +79,7 @@ namespace CoreArsaOfisi.Controllers
         [Route("Deneme")]
         public async Task<IActionResult> Privacy()
         {
-            var model = await unitOfWork.AdvertisementRepository.GetAdvertisements();
-            return View(model);
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

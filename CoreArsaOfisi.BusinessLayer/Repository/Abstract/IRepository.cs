@@ -4,9 +4,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoreArsaOfisi.BusinessLayer.Repositories.Abstract
+namespace CoreArsaOfisi.BusinessLayer.Repository.Abstract
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T> where T:class
     {
         ValueTask<T> GetByIdAsync(int Id);
         Task<IEnumerable<T>> GetAllAsync();
