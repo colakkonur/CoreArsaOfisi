@@ -757,15 +757,16 @@
                 <div class="sidebar_listing_list">
                     <div class="sidebar_advanced_search_widget">
                         <div class="sl_creator">
-                            <h4 class="mb25">Listed By</h4>
+                            <h4 class="mb25">İlan Sahibi</h4>
                             <div class="media">
                                 <img class="mr-3 useravatar" src="~/userimage/@Model.Advertisement_items.Avatar" alt="lc1.png">
                                 <div class="media-body">
-                                    <h5 class="mt-0 mb0">@Model.Advertisement_items.CompanyName</h5>
-                                    <p class="text-thm">@Model.Advertisement_items.OfficalName</p>
-                                    <p class="mb0">@Model.Advertisement_items.PhoneNumber</p>
-                                    <p class="mb0">@Model.Advertisement_items.Mail</p>
-
+                                    <a href="@Url.Action("AdvertiserDetail","Advertiser", new { @Id = Model.Advertisement_items.AdvertiserId })">
+                                        <h5 class="mt-0 mb0">@Model.Advertisement_items.CompanyName</h5>
+                                        <p class="text-thm">@Model.Advertisement_items.OfficalName</p>
+                                        <p class="mb0">@Model.Advertisement_items.PhoneNumber</p>
+                                        <p class="mb0">@Model.Advertisement_items.Mail</p>
+                                    </a>
                                 </div>
                             </div>
                         </div>

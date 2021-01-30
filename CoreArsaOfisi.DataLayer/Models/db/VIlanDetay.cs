@@ -56,5 +56,6 @@ namespace CoreArsaOfisi.DataLayer.Models.db
         public string TypeName { get; set; }
         public string DistrictName { get; set; }
         public string ProvinceName { get; set; }
+        public int AdvertiserId { get; set; }
     }
 }
