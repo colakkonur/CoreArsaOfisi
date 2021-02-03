@@ -35,6 +35,11 @@ namespace CoreArsaOfisi.BusinessLayer.Repository.Concrete
             return _dbSet.Where(predicate);
         }
 
+        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _dbSet.Where(predicate).ToListAsync();
+        }
+
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _dbSet.ToListAsync();

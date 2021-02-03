@@ -14,10 +14,11 @@ namespace CoreArsaOfisi.Controllers
         public async Task<IActionResult> AdvertiserDetail(int Id)
         {
             AdvertiserBusiness advertiserBusiness = new AdvertiserBusiness();
-
-            var model= new AdvertiserDetailViewModel()
+            VIlanListesiBusiness vIlanListesiBusiness = new VIlanListesiBusiness();
+            var model = new AdvertiserDetailViewModel()
             {
-                Advertiser= await advertiserBusiness.GetAdvertiserAsync(Id),
+                Advertiser = await advertiserBusiness.GetAdvertiserAsync(Id),
+                IlanListesi = await vIlanListesiBusiness.Find(Id)
             };
 
             return View(model);

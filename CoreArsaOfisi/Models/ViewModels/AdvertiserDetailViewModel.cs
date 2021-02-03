@@ -9,6 +9,6 @@ namespace CoreArsaOfisi.Models.ViewModels
     public class AdvertiserDetailViewModel
     {
         public Advertiser Advertiser { get; set; }
-        public VIlanListesi IlanListesi { get; set; }
+        public IEnumerable<VIlanListesi> IlanListesi { get; set; }
     }
 }

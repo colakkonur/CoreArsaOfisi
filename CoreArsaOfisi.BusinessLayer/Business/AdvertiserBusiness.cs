@@ -28,9 +28,6 @@ namespace CoreArsaOfisi.BusinessLayer.Business
             return await _advertiserRepository.GetByIdAsync(Id);
         }
 
-        public void Find() 
-        { 
-        }
 
     }
 }
